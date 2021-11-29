@@ -13,13 +13,39 @@
       <div class="col-lg-4 mx-auto">
         <h2 class="text-center mb-4">Registro</h2>
         <div class="auto-form-wrapper">
-          <form action="#">
+          <form [formGroup]="registroForm" (ngSubmit)="crearUsuario()">
             <div class="form-group">
               <div class="input-group">
-                <input type="email" class="form-control" placeholder="Correo" />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre"
+                  formControlName="nombre"
+                />
                 <div class="input-group-append">
                   <span class="input-group-text">
-                    <i class="fa fa-check-circle"></i>
+                    <i
+                      class="fa fa-check-circle"
+                      *ngIf="registroForm.get('nombre')?.valid"
+                    ></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Correo"
+                  formControlName="correo"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i
+                      *ngIf="registroForm.get('correo')?.valid"
+                      class="fa fa-check-circle"
+                    ></i>
                   </span>
                 </div>
               </div>
@@ -30,17 +56,25 @@
                   type="password"
                   class="form-control"
                   placeholder="Password"
+                  formControlName="password"
                 />
                 <div class="input-group-append">
                   <span class="input-group-text">
-                    <i class="fa fa-check-circle"></i>
+                    <i
+                      class="fa fa-check-circle"
+                      *ngIf="registroForm.get('password')?.valid"
+                    ></i>
                   </span>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <button class="btn btn-primary submit-btn btn-block">
+              <button
+                class="btn btn-primary submit-btn btn-block"
+                type="submit"
+                [disabled]="registroForm.invalid"
+              >
                 Crear cuenta
               </button>
             </div>
